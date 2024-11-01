@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   django_gunicorn:
     volumes:
@@ -10,6 +8,9 @@ services:
       context: .
     ports:
       - "8000:8000"
+    networks:
+      - shared_network  # Добавлена сеть
+
   nginx:
     build: ./nginx
     volumes:
@@ -18,7 +19,12 @@ services:
       - "80:80"
     depends_on:
       - django_gunicorn
+    networks:
+      - shared_network  # Добавлена сеть
 
 volumes:
   static:
 
+networks:
+  shared_network:
+    external: true
