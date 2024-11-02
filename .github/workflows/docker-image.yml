@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Проверка кода из репозитория
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Логин в Docker Hub
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u lampanykey --password-stdin
+
+      # Сборка Docker-образа
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag lampanykey/anton:latest
+
+      # Пуш образа в Docker Hub
+      - name: Push the Docker image
+        run: docker push lampanykey/anton:latest
