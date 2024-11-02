@@ -16,9 +16,6 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const fetch = require('node-fetch');
-
-            // Аутентификация и получение токена
             const authResponse = await fetch('https://portainer.dev.payergate.com/api/auth', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -35,7 +32,7 @@ jobs:
             const authData = await authResponse.json();
             const token = authData.jwt;
 
-            // Запрос на перезапуск стека
+
             const redeployResponse = await fetch('https://portainer.dev.payergate.com/api/stacks/29/git/redeploy?endpointId=2', {
               method: 'PUT',
               headers: {
@@ -53,5 +50,3 @@ jobs:
             }
 
             console.log('Redeploy triggered successfully');
-        
-
