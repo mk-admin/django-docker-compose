@@ -2,8 +2,7 @@ name: Deploy Stack with Portainer
 
 on:
   push:
-    branches:
-      - dev
+    branches: [ dev ]
 
 jobs:
   deploy:
