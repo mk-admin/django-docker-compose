@@ -4,6 +4,7 @@ services:
       - static:/static
     env_file:
       - .env
+    pull_policy: build
     build:
       context: .
     ports:
