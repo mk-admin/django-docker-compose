@@ -41,7 +41,8 @@ jobs:
               },
               body: JSON.stringify({
                 prune: true,
-                pullImage: true
+                pullImage: true,
+                repositoryReferenceName : 'refs/heads/dev'
               })
             });
 
