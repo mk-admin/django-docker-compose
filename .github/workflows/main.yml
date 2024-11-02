@@ -20,8 +20,8 @@ jobs:
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                Username: autodeploy,
-                Password: qweqwe123qweqwe123
+                Username: 'autodeploy',
+                Password: 'qweqwe123qweqwe123'
               })
             });
 
